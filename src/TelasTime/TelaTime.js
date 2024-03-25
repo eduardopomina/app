@@ -1,15 +1,19 @@
 import React from "react";
-import { Text, Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "./Home";
+import Plantel from "./Plantel";
+import Competicoes from "./Competicoes";
+
+const Tab = createBottomTabNavigator();
 
 function TelaTime({ route, navigation }) {
   const { nome, facanha, simbolo } = route.params;
   return (
-    <>
-      <Text>Tela do Time</Text>
-      <Text> {nome} </Text>
-      <Image style={{ width: 200, height: 200 }} source={{ uri: simbolo }} />
-      <Text>{facanha}</Text>
-    </>
+    <Tab.Navigator initialRouteName="HomeTime">
+      <Tab.Screen name="HomeTime" component={Home} />
+      <Tab.Screen name="Plantel" component={Plantel} />
+      <Tab.Screen name="Competicoes" component={Competicoes} />
+    </Tab.Navigator>
   );
 }
 
