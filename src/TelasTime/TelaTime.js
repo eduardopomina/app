@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 function TelaTime({ route, navigation }) {
   const { nome, facanha, simbolo } = route.params;
   return (
-    <Tab.Navigator initialRouteName="HomeTime">
+    <Tab.Navigator initialRouteName="HomeTime" screenOptions={{headerShown: false}}>
       <Tab.Screen name="HomeTime" component={Home} />
       <Tab.Screen name="Plantel" component={Plantel} />
       <Tab.Screen name="Competicoes" component={Competicoes} />
