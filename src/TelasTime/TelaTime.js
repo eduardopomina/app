@@ -3,12 +3,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Home";
 import Plantel from "./Plantel";
 import Competicoes from "./Competicoes";
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
 function TelaTime({ route, navigation }) {
   const { nome, facanha, simbolo } = route.params;
+
   return (
     <Tab.Navigator
       initialRouteName="HomeTime"
@@ -16,16 +17,39 @@ function TelaTime({ route, navigation }) {
     >
       <Tab.Screen
         name="HomeTime"
-        component={Home}
+        component={() => (
+          <Home time={nome} facanha={facanha} simbolo={simbolo} />
+        )}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: () => (
-            <AntDesign name="home" size={24} color="black" />
+            <MaterialCommunityIcons name="home" size={24} color="black" />
           ),
         }}
       />
-      <Tab.Screen name="Plantel" component={Plantel} />
-      <Tab.Screen name="Competicoes" component={Competicoes} />
+      <Tab.Screen
+        name="Plantel"
+        component={Plantel}
+        options={{
+          tabBarLabel: "Plantel",
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name="soccer-field"
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Competicoes"
+        component={Competicoes}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="trophy" size={24} color="black" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
