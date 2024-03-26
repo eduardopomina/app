@@ -29,7 +29,7 @@ function TelaTime({ route, navigation }) {
       />
       <Tab.Screen
         name="Plantel"
-        component={Plantel}
+        component={() => <Plantel time={nome} simbolo={simbolo} />}
         options={{
           tabBarLabel: "Plantel",
           tabBarIcon: () => (

@@ -2,6 +2,8 @@ import React from "react";
 import { Pressable, SafeAreaView, ScrollView, Text } from "react-native";
 import ItemLista from "../ItemLista/ItemLista";
 
+
+
 function Home({ navigation }) {
   return (
     <SafeAreaView>
