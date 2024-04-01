@@ -17,7 +17,7 @@ function Plantel(props) {
 
  return (
     <View style={styles.container}>
-      <Button title="Voltar" onPress={() => navigation.goBack()} />
+      
       {timeDesejado ? (
         <View>
           <Text style={styles.timeName}>{time}</Text>
@@ -34,6 +34,7 @@ function Plantel(props) {
       ) : (
         <Text style={styles.loadingText}>Carregando...</Text>
       )}
+        <Button title="Voltar" onPress={() => navigation.goBack()} />
     </View>
  );
 }

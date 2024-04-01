@@ -43,7 +43,7 @@ function TelaTime({ route, navigation }) {
       />
       <Tab.Screen
         name="Competicoes"
-        component={Competicoes}
+        component={() => <Competicoes time={nome} simbolo={simbolo} />}
         options={{
           tabBarIcon: () => (
             <MaterialCommunityIcons name="trophy" size={24} color="black" />
