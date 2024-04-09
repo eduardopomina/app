@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, TextInput, Button, Alert, Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthContext from '../auth/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+ const [username, setUsername] = useState('');
+ const [password, setPassword] = useState('');
+ const { setIsLoggedIn } = useContext(AuthContext); // Consumindo o contexto de autenticação
 
-  const handleLogin = async () => {
+ const handleLogin = async () => {
     try {
       const storedUsername = await AsyncStorage.getItem('username');
       const storedPassword = await AsyncStorage.getItem('password');
@@ -15,13 +17,13 @@ const LoginScreen = ({ navigation }) => {
       if (username !== storedUsername || password !== storedPassword) {
         alert('Error!\nInvalid username or password.');
       } else {
+        setIsLoggedIn(true); // Atualiza o estado de autenticação global
         navigation.navigate('Home');
-        // Aqui você pode adicionar a lógica para navegar para a tela principal após o login bem-sucedido
       }
     } catch (error) {
       alert('Error!\nThere was an error verifying user data.');
     }
-  };
+ };
 
   return (
     <View>

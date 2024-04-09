@@ -11,7 +11,7 @@ const RegistroScreen = ({ navigation }) => {
     // Aqui você pode adicionar a lógica de registro
     try {
       await AsyncStorage.setItem('username', username);
-      await AsyncStorage.setItem('email', email);
+      await AsyncStorage.setItem('email', email);  
       await AsyncStorage.setItem('password', password);
       navigation.navigate('Login');
     } catch (error) {

@@ -3,21 +3,20 @@ import { Button, Text, View, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 function Plantel(props) {
- const navigation = useNavigation();
- const [times, setTimes] = useState([]);
- const { time, simbolo } = props;
+  const navigation = useNavigation();
+  const [times, setTimes] = useState([]);
+  const { time, simbolo } = props;
 
- useEffect(() => {
+  useEffect(() => {
     const timesData = require("../../assets/times.json");
     setTimes(timesData);
- }, []);
+  }, []);
 
- // Filtrar o time desejado do array times
- const timeDesejado = times.find((t) => t.nome === time);
+  // Filtrar o time desejado do array times
+  const timeDesejado = times.find((t) => t.nome === time);
 
- return (
+  return (
     <View style={styles.container}>
-      
       {timeDesejado ? (
         <View>
           <Text style={styles.timeName}>{time}</Text>
@@ -26,7 +25,9 @@ function Plantel(props) {
             <View key={i} style={styles.posicaoContainer}>
               <Text style={styles.posicao}>{posicao.posicao}</Text>
               {posicao.jogadores.map((jogador, j) => (
-                <Text key={j} style={styles.jogador}>{jogador}</Text>
+                <Text key={j} style={styles.jogador}>
+                  {jogador}
+                </Text>
               ))}
             </View>
           ))}
@@ -34,44 +35,44 @@ function Plantel(props) {
       ) : (
         <Text style={styles.loadingText}>Carregando...</Text>
       )}
-        <Button title="Voltar" onPress={() => navigation.goBack()} />
+      <Button title="Voltar" onPress={() => navigation.goBack()} />
     </View>
- );
+  );
 }
 
 const styles = StyleSheet.create({
- container: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
- },
- timeName: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  timeName: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
- },
- image: {
+  },
+  image: {
     width: 100,
     height: 100,
     marginBottom: 20,
- },
- posicaoContainer: {
-    backgroundColor: '#f0f0f0',
+  },
+  posicaoContainer: {
+    backgroundColor: "#f0f0f0",
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    width: '80%',
- },
- posicao: {
-    fontWeight: 'bold',
+    width: "80%",
+  },
+  posicao: {
+    fontWeight: "bold",
     marginBottom: 5,
- },
- jogador: {
+  },
+  jogador: {
     fontSize: 16,
- },
- loadingText: {
+  },
+  loadingText: {
     fontSize: 18,
- },
+  },
 });
 
 export default Plantel;

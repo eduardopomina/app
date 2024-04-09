@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Home";
 import Plantel from "./Plantel";
 import Competicoes from "./Competicoes";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AuthContext from "../auth/AuthContext";
 
 const Tab = createBottomTabNavigator();
 
 function TelaTime({ route, navigation }) {
+
+  useEffect(() => {
+    if (AuthContext.isLoggedIn === false) {
+      navigation.navigate("Login");
+    }
+  }, []);
+
+
+
   const { nome, facanha, simbolo } = route.params;
 
   return (
