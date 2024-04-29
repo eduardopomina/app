@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Home";
+import Editar from "../CadastroTIme/EditarTime";
 import Plantel from "./Plantel";
 import Competicoes from "./Competicoes";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -9,16 +10,13 @@ import AuthContext from "../auth/AuthContext";
 const Tab = createBottomTabNavigator();
 
 function TelaTime({ route, navigation }) {
-
   useEffect(() => {
     if (AuthContext.isLoggedIn === false) {
       navigation.navigate("Login");
     }
   }, []);
 
-
-
-  const { nome, facanha, simbolo } = route.params;
+  const { nome, facanha, simbolo, idTime } = route.params;
 
   return (
     <Tab.Navigator
@@ -28,7 +26,12 @@ function TelaTime({ route, navigation }) {
       <Tab.Screen
         name="HomeTime"
         component={() => (
-          <Home time={nome} facanha={facanha} simbolo={simbolo} />
+          <Home
+            time={nome}
+            facanha={facanha}
+            simbolo={simbolo}
+            idTime={idTime}
+          />
         )}
         options={{
           tabBarLabel: "Home",
@@ -48,6 +51,23 @@ function TelaTime({ route, navigation }) {
               size={24}
               color="black"
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Editar"
+        component={() => (
+          <Editar
+            time={nome}
+            simbolo={simbolo}
+            facanha={facanha}
+            idTime={idTime}
+          />
+        )}
+        options={{
+          tabBarLabel: "Editar",
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="pencil" size={24} color="black" />
           ),
         }}
       />
