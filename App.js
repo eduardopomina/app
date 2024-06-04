@@ -22,7 +22,7 @@ const App = () => {
         <Stack.Screen 
           name="Cadastro" 
           component={TelaCadastro} 
-          options={{ title: 'Cadastro' }} 
+          options={{ title: 'Cadasro' }} 
         />
         <Stack.Screen 
           name="Paciente" 
